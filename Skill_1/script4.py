@@ -12,8 +12,13 @@ my_device = {
 conn = Scrapli(**my_device)
 
 conn.open()
+my_configs = [
+    "set system host-name R1-PIZZA",
+    "commit"
+]
 
-result = conn.send_command("show interfaces terse")
+# result = conn.send_configs(my_configs)
+result = conn.send_configs_from_file("R1.cfg")
 
 print(result.result)
 
