@@ -1,2 +1,4 @@
-this is just some text
-to see if this works
+edit
+edit interface fxp0
+set unit family inet address 8.8.8.8/32
+commit
