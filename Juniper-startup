@@ -1,2 +1,36 @@
 root
 cli
+edit
+
+set system root-authentication plain-text-password
+
+Juniper01
+
+delete chassis auto-image-upgrade
+commit
+
+deactivate system syslog user *
+commit
+
+root# edit system login
+root# set user okan class super-user
+root# set user okan full-name "Okan Hollander"
+root# set user okan authentication plain-text-password
+New password: Welkom@1234
+Retype new password: Welkom@1234
+root# commit
+root# top
+
+
+root# set system services ssh
+root# commit
+
+root# edit interface fxp0
+root# delete unit 0 family inewt dhcp
+root# commit
+
+root# set unit 0 family inet address 10.123.10.195/24 
+root# commit
+
+root# set routing-options static route 0.0.0.0/0 next-hop <next-hop-gw>
+root# commit
