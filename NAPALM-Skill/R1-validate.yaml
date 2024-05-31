@@ -1,0 +1,42 @@
+---
+- get_facts:
+    fqdn: R1-D2
+    hostname: R1-D2
+    # interface_list:
+    #   - ge-0/0/0
+    #   - lc-0/0/0
+    #   - pfe-0/0/0
+    #   - pfh-0/0/0
+    #   - ge-0/0/1
+    #   - ge-0/0/2
+    #   - ge-0/0/3
+    #   - ge-0/0/4
+    #   - ge-0/0/5
+    #   - ge-0/0/6
+    #   - ge-0/0/7
+    #   - ge-0/0/8
+    #   - ge-0/0/9
+    #   - cbp0
+    #   - demux0
+    #   - dsc
+    #   - em1
+    #   - esi
+    #   - fxp0
+    #   - gre
+    #   - ipip
+    #   - irb
+    #   - jsrv
+    #   - lo0
+    #   - lsi
+    #   - mtun
+    #   - pimd
+    #   - pime
+    #   - pip0
+    #   - pp0
+    #   - rbeb
+    #   - tap
+    #   - vtep
+    model: VMX
+    os_version: 17.1R1.8
+    serial_number: VM6655696EE8
+    vendor: Juniper
