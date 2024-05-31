@@ -16,4 +16,4 @@ with juniper_device(
 ) as device:
     results = device.compliance_report("R1-validate.yaml")
 
-    rprint(results)
+    rprint(results['get_facts']['complies'])
