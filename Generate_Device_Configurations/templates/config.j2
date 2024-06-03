@@ -1,0 +1,5 @@
+set system host-name {{HOSTNAME}}
+
+{% for intf in OSPF %}
+set protocols ospf area {{ intf.area}} interface {{ intf.interface}}
+{% endfor %}
