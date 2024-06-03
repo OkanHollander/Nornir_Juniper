@@ -9,7 +9,7 @@ def connect_juniper(hostname, username, password):
     with juniper_device(hostname=hostname, username=username, password=password) as device:
         device.open()
         output = device.get_facts()
-    rprint(output)
+    getter_parser_printer(output)
 
 
 def connect_cisco(hostname, username, password):
@@ -17,7 +17,15 @@ def connect_cisco(hostname, username, password):
     with cisco_device(hostname=hostname, username=username, password=password) as device:
         device.open()
         output = device.get_facts()
-    rprint(output)
+    getter_parser_printer(output)
+
+
+def getter_parser_printer(result):
+    hostname = result['hostname']
+    serial_number = result['serial_number']
+    vendor = result['vendor']
+    uptime = result['uptime']
+    rprint(f"{hostname} ({serial_number}/{vendor}) has an uptime of {uptime}")
 
 
 def main():
