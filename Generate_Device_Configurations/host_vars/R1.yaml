@@ -9,5 +9,5 @@ BGP:
   ASN: "65001"
   ASN_TYPE: "private"
 SNMP:
-  - community: "R1-Com1"
-  - community: "R1-Com2"
+  - community: "R1-Com3"
+  - community: "R1-Com4"
