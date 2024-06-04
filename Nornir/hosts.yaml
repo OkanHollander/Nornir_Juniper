@@ -1,0 +1,15 @@
+---
+R1:
+  username: "okan"
+  password: "Welkom@1234"
+  platform: "juniper_junos"
+  hostname: "10.123.10.195"
+  groups:
+    - juniper
+R2:
+  username: "okan"
+  password: "Welkom@1234"
+  platform: "juniper_junos"
+  hostname: "10.123.10.196"
+  groups:
+    - juniper
