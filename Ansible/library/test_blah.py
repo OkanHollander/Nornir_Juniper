@@ -8,7 +8,10 @@ def main():
     module = AnsibleModule(argument_spec=module_fields)
     my_string_data = module.params["mystring"]
     upper_string_data = my_string_data.upper()
+
     module.params.update({"mystring": upper_string_data})
+    module.params.update({"my_original_string": my_string_data})
+
     module.exit_json(data=module.params)
 
 if __name__ == '__main__':
