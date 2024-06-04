@@ -1,5 +1,6 @@
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
+from nornir_utils.plugins.functions import print_result
 from rich import print as rprint
 
 nr = InitNornir(config_file="config.yaml")
@@ -13,17 +14,9 @@ def get_some_stuff(task):
 
     Returns:
     None: The function prints the output of the 'how version' command to the console.
-
-    Example:
-    >>> from nornir import InitNornir
-    >>> from nornir_netmiko.tasks import netmiko_send_command
-    >>> from rich import print as rprint
-    >>> nr = InitNornir(config_file="config.yaml")
-    >>> final_result = nr.run(task=get_some_stuff)
-    >>> rprint(final_result)
     """
-    result = task.run(task=netmiko_send_command, command_string="show version")
-    print(result.result)
+    result = task.run(task=netmiko_send_command, command_string="show configuration")
+    # print(result.result)
 
 final_result = nr.run(task=get_some_stuff)
-rprint(final_result)
+print_result(final_result)
