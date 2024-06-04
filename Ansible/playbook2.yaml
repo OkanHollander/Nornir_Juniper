@@ -1,0 +1,13 @@
+---
+- name: Testing with Scrapli
+  hosts: localhost
+
+  tasks:
+    - name: Using the Scrapli module
+      use_scrapli:
+        ip: "10.123.10.195"
+      register: result
+    
+    - name: Print Result
+      ansible.builtin.debug:
+        msg: "{{ result.data.result.split('\n') }}"
