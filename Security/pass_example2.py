@@ -3,8 +3,8 @@ from netmiko import ConnectHandler
 from rich import print as rprint
 import os
 
-my_pass = os.environ.get("MYPASS")
-my_user = os.environ.get("MYUSER")
+my_pass = os.environ.get("MYPASSWORD")
+my_user = os.environ.get("MYUSERNAME")
 
 with ConnectHandler(device_type="juniper",
                     host="10.123.10.195",
