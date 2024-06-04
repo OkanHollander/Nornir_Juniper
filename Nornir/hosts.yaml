@@ -6,6 +6,7 @@ R1:
   data:
     bgp:
       asn: 65001
+    snmp: "Juniper-R1-Community"
 R2:
   hostname: "10.123.10.196"
   groups:
