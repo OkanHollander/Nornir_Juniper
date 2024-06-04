@@ -10,4 +10,4 @@
     
     - name: Print Result
       ansible.builtin.debug:
-        msg: "{{ result.data.result.split('\n') }}"
+        msg: "{{ result.data.result }}"

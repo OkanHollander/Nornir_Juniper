@@ -2,6 +2,7 @@
 
 from ansible.module_utils.basic import AnsibleModule
 from scrapli import Scrapli
+import json
 
 def connect_junos(device_ip):
     device = {
@@ -13,7 +14,8 @@ def connect_junos(device_ip):
     }
     conn = Scrapli(**device)
     conn.open()
-    result = conn.send_command("show configuration")
+    result = conn.send_command("show configuration | display json")
+    pretty_results = json.loads(result.result)
 
     return result.result
 
