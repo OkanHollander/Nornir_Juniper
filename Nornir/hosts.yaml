@@ -3,7 +3,13 @@ R1:
   hostname: "10.123.10.195"
   groups:
     - juniper
+  data:
+    bgp:
+      asn: 65001
 R2:
   hostname: "10.123.10.196"
   groups:
     - juniper
+  data:
+    bgp:
+      asn: 5
