@@ -1,6 +1,0 @@
-{
-    "yaml.schemas": {
-        "kubernetes": "*.yaml",
-        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/vars.json": "file:///Users/okan.hollander/Nornir_Juniper/Skill_2/hosts.yaml"
-    }
-}
