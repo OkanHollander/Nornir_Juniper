@@ -1,0 +1,13 @@
+---
+- name: Testing Scrapli with Ansible
+  hosts: localhost
+
+  tasks:
+    - name: Using the Scarpli library in Ansible to Gather OSPF data
+      ospf_table:
+        ip: "10.123.10.195"
+      register: ospf_table
+
+    - name: Debug and Print output
+      ansible.builtin.debug:
+        msg: "{{ ospf_table.data.result.split('\n') }}"
