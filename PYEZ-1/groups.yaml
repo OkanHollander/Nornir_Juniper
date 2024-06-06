@@ -1,0 +1,8 @@
+---
+juniper:
+  platform: "junos"
+  data:
+    snmp: "JUNIPER-SNMP-COMMUNITY"
+  connection_options:
+    netmiko:
+      platform: "juniper_junos"
