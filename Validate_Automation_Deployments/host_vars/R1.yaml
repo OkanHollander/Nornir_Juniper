@@ -3,4 +3,4 @@
 BGP:
   ASN: 5
   group: "mybgpgroup"
-  type: "internal"
+  peer: 10.10.10.10

@@ -5,6 +5,7 @@ from scrapli.response import MultiResponse
 from typing import List
 
 from inventory import DEVICES
+from validation_models import Model
 
 
 def create_config(hostname: str) -> list[str]:
@@ -24,11 +25,15 @@ def create_config(hostname: str) -> list[str]:
     yaml_data = yaml.safe_load(
         open(f"host_vars/{hostname}.yaml", "r", encoding="UTF-8")
     )
+    validate_data = Model(**yaml_data)
+    print("*"*50)
+    print(validate_data)
+    print("*"*50)
     env = Environment(
         loader=FileSystemLoader("templates"), trim_blocks=True, lstrip_blocks=True
     )
     template = env.get_template("config.j2")
-    my_config = template.render(yaml_data)
+    my_config = template.render(validate_data)
     configuration = my_config.split("\n")
 
     return configuration
