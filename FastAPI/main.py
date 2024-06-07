@@ -68,3 +68,4 @@ async def get_dev_info() -> dict:
 async def get_configurations():
     results = nr.run(task=netmiko_send_command, command_string="show configuration")
     return results
+
