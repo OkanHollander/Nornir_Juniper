@@ -4,6 +4,7 @@ R1:
   groups:
     - juniper
   data:
+    device_name: "R1"
     bgp:
       asn: 65001
     snmp: "Juniper-R1-Community"
@@ -12,5 +13,6 @@ R2:
   groups:
     - juniper
   data:
+    device_name: "R2"
     bgp:
       asn: 5

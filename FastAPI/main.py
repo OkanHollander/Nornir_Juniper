@@ -81,3 +81,11 @@ async def get_running(request: Request):
     return templates.TemplateResponse(
         "output.html", {"request": request, "result": result}
     )
+
+@app.get("/get-running/{hostname}", tags=["configurations"])
+async def get_running_devices(hostname):
+    device = nr.filter(device_name=f"{hostname}")
+    return device.run(task=netmiko_send_command, command_string="show config")
+
+
+
