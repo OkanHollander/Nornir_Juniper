@@ -22,3 +22,4 @@ PyYAML
 requests
 rich
 scrapli
+fastapi
