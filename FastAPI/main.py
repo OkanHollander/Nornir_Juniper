@@ -1,11 +1,13 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from nornir import InitNornir
 import yaml
 from nornir_netmiko.tasks import netmiko_send_command
+from fastapi.templating import Jinja2Templates
 
 nr = InitNornir(config_file="config.yaml")
-
+templates = Jinja2Templates(directory="templates")
 app = FastAPI()
+
 
 @app.get("/")
 async def root() -> dict:
@@ -20,6 +22,7 @@ async def root() -> dict:
     """
     return {"message": "Hello World"}
 
+
 @app.get("/inventory")
 async def inventory():
     """
@@ -33,7 +36,8 @@ async def inventory():
     """
     return nr.inventory.hosts
 
-@app.get("/all_vars", tags=['variables'])
+
+@app.get("/all_vars", tags=["variables"])
 async def get_all_vars() -> dict:
     """
     Endpoint to retrieve all variables from a specific YAML file.
@@ -44,11 +48,12 @@ async def get_all_vars() -> dict:
     Returns:
         dict: A dictionary containing all variables from the specified YAML file.
     """
-    with open("group_vars/snmp/juniper.yaml", "r", encoding='utf-8') as file:
+    with open("group_vars/snmp/juniper.yaml", "r", encoding="utf-8") as file:
         all_vars = yaml.safe_load(file)
     return {"all_vars": all_vars}
 
-@app.get("/devinfo", tags=['variables'])
+
+@app.get("/devinfo", tags=["variables"])
 async def get_dev_info() -> dict:
     """
     Endpoint to retrieve device information from a YAML file.
@@ -59,13 +64,20 @@ async def get_dev_info() -> dict:
     Returns:
         dict: A dictionary containing device information from the specified YAML file.
     """
-    with open("hosts.yaml", "r", encoding='utf-8') as file:
+    with open("hosts.yaml", "r", encoding="utf-8") as file:
         dev_info = yaml.safe_load(file)
     return {"dev_info": dev_info}
 
 
-@app.get("/configurations", tags=['configurations'])
+@app.get("/configurations", tags=["configurations"])
 async def get_configurations():
     results = nr.run(task=netmiko_send_command, command_string="show configuration")
     return results
 
+
+@app.get("/get-running", tags=["configurations"])
+async def get_running(request: Request):
+    result = nr.run(task=netmiko_send_command, command_string="show config")
+    return templates.TemplateResponse(
+        "output.html", {"request": request, "result": result}
+    )
