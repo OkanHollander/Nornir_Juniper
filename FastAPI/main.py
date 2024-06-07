@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from nornir import InitNornir
 import yaml
+from nornir_netmiko.tasks import netmiko_send_command
 
 nr = InitNornir(config_file="config.yaml")
 
@@ -61,3 +62,9 @@ async def get_dev_info() -> dict:
     with open("hosts.yaml", "r", encoding='utf-8') as file:
         dev_info = yaml.safe_load(file)
     return {"dev_info": dev_info}
+
+
+@app.get("/configurations", tags=['configurations'])
+async def get_configurations():
+    results = nr.run(task=netmiko_send_command, command_string="show configuration")
+    return results
